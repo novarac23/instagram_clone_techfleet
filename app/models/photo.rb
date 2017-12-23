@@ -7,6 +7,7 @@ class Photo < ApplicationRecord
       }
     end
   end
+
   belongs_to :user
   has_many :comments
 end
