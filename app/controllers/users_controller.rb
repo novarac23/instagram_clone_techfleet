@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @photos = Photo.all
+  end
+
   def new
     @user = User.new
   end
