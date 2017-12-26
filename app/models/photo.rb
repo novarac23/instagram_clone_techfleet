@@ -1,12 +1,6 @@
 class Photo < ApplicationRecord
-  dragonfly_accessor :image do
-    storage_options do |attachment|
-      {
-        path: "images/#{rand(100)}",
-        headers: {"x-amz-acl" => "public-read-write"}
-      }
-    end
-  end
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   belongs_to :user
   has_many :comments
