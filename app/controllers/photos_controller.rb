@@ -23,7 +23,19 @@ class PhotosController < ApplicationController
   def show
     @photo = Photo.find(params[:id])
     @comment = Comment.new
-    @comments = Comment.all
+    @comments = @photo.comments
+  end
+
+  def like
+    photo = Photo.find(params[:photo_id])
+    photo.upvote_by current_user
+    redirect_to photo_path(photo.id)
+  end
+
+  def dislike
+    photo = Photo.find(params[:photo_id])
+    photo.downvote_by current_user
+    redirect_to photo_path(photo.id)
   end
 
   private

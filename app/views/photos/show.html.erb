@@ -2,6 +2,21 @@
 
 <%= image_tag @photo.image.url(:medium) %>
 
+<hr>
+
+<%= link_to photo_like_path(@photo.id), method: :put do %>
+  Like
+<% end %>
+|
+<%= link_to photo_dislike_path(@photo.id), method: :put do %>
+  Dislike
+<% end %>
+
+<p> Likes: <%= @photo.get_likes.size %> </p>
+<p> Dislikes: <%= @photo.get_dislikes.size %> </p>
+
+<hr>
+
 <h1>Comments</h1>
 
 <%= @comments.each do |comment| %>
