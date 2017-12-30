@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-  def index
-    @photos = Photo.all
-  end
+  before_action :authorize, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -11,9 +9,22 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     
     if user.save
-      #TODO redirect to photos index page
       session[:user_id] = user.id
+      redirect_to photos_path
+    else
       redirect_to "/"
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    user = User.find(params[:id])
+
+    if user.update(user_params)
+      redirect_to edit_user_path(user.id)
     else
       redirect_to "/"
     end

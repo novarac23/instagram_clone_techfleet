@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :photos, only: [:new, :create, :index, :show] do
     put "like", to: "photos#like"
     put "dislike", to: "photos#dislike"
