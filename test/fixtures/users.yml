@@ -2,12 +2,12 @@
 
 nik:
   email: nik@techfleet.com
-  password_digest: lkajsdlkajdlkaj
+  password_digest: <%= BCrypt::Password.create('donuts', cost: 4) %>
   first_name: Nikola
   last_name: Novakovic
 
 don:
   email: MyString
-  password_digest: MyString
+  password_digest: <%= BCrypt::Password.create('donuts', cost: 4) %>
   first_name: MyString
   last_name: MyString

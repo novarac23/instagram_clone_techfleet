@@ -6,4 +6,9 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:new, :create]
   resource :comments, only: [:create]
+
+  namespace :api, constraints: { format: 'json' } do
+    resources :photos, only: [:show, :index]
+    resources :comments, only: [:show, :index]
+  end
 end
